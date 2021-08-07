@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="card list-fruta">
+      <h5 class="card-header">Lista de Frutas</h5>
+      <div class="card-body">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Imagem</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let fruta of frutas">
+                <td>{{fruta.idFruta}}</td>
+                <td>{{fruta.nomeFruta}}</td>
+                <td>{{fruta.descricaoFruta}}</td>
+                <td><img src="\assets\img\{{fruta.fotoFruta}}" alt="" width="40" height="40"></td>
+                <td>{{fruta.qtdFruta}}</td>                
+                <td>{{fruta.valorFruta | currency: 'BRL': 'symbol': '.2-2'}}</td>
+                <td>
+                  <button type="button" class="btn btn-warning btn-sm" (click)="editFruta(fruta)">Editar</button>
+                  <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteFruta(fruta)">Deletar</button>
+                </td>                   
+              </tr>
+              
+            </tbody>
+          </table>
+      </div>
+    </div>
+    <div class="card add-fruta">
+      <h5 class="card-header">Adicionar/Atualizar fruta</h5>
+      <div class="card-body">
+        <form id="add-form" (ngSubmit)="f.form.valid && saveFruta(f)" #f="ngForm" novalidate>
+          <div class="form-group">
+              <label for="nomeFruta">Nome</label>
+              <input type="text" [(ngModel)]="fruta.nomeFruta" id="nomeFruta" name="nomeFruta" #nomeFruta="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && nomeFruta.invalid }" placeholder="Digite o nome da fruta">
+              <div *ngIf="f.submitted && nomeFruta.invalid" class="invalid-feedback">                  
+
+              </div>
+          <div class="form-group">
+              <label for="descricaoFruta">Descrição</label>
+              <input type="text" [(ngModel)]="fruta.descricaoFruta" id="descricaoFruta" name="descricaoFruta" #descricaoFruta="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && descricaoFruta.invalid }" placeholder="Digite a descrição da fruta">
+              <div *ngIf="f.submitted && descricaoFruta.invalid" class="invalid-feedback">
+                  
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="fotoFruta">Foto</label>
+              <input type="file" [(ngModel)]="fruta.fotoFruta" id="fotoFruta" name="fotoFruta" #fotoFruta="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && fotoFruta.invalid }" placeholder="Selecione a imagem">
+              <div *ngIf="f.submitted && fotoFruta.invalid" class="invalid-feedback">
+                  
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="qtdFruta">Quantidade</label>
+            <input type="number" [(ngModel)]="fruta.qtdFruta" id="qtdFruta" name="qtdFruta" #qtdFruta="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && qtdFruta.invalid }" placeholder="Digite a quantidade">
+            <div *ngIf="f.submitted && qtdFruta.invalid" class="invalid-feedback">
+                
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="valorFruta">Valor</label>
+          <input type="number" [(ngModel)]="fruta.valorFruta" id="valorFruta" name="valorFruta" #valorFruta="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && valorFruta.invalid }" placeholder="Digite o valor">
+          <div *ngIf="f.submitted && valorFruta.invalid" class="invalid-feedback">
+              
+          </div>
+      </div>
+          <button type="submit" class="btn btn-primary btn-add-fruta">Salvar</button>
+          <button type="reset" class="btn btn-secondary btn-add-fruta" (click)="cleanForm(f)">Cancelar</button>
+          </div> 
+        </form>        
+      </div>
+    </div>
+</div>
