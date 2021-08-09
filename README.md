@@ -1,5 +1,12 @@
+# Arquivo extra
+
+Github não aceitou o node module. Criei uma pasta no google drive:
 
 https://drive.google.com/file/d/10FO3cw9mvlG9URZUvPh-4J8saQ4U1rN8/view?usp=sharing
+
+Baixar o node module e copiar para a pasta raíz do projeto.
+
+
 # AngularHttp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.4.
